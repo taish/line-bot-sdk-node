@@ -1,0 +1,22 @@
+{
+  "name": "line-bot-api",
+  "version": "0.0.1",
+  "description": "SDK of the LINE Messaging API",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taish/line-bot-sdk-node.git"
+  },
+  "author": "taish <kbystis+git@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/taish/line-bot-sdk-node/issues"
+  },
+  "homepage": "https://github.com/taish/line-bot-sdk-node#readme",
+  "devDependencies": {
+    "ava": "^0.16.0"
+  }
+}
