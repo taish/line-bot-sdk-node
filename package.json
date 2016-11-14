@@ -12,7 +12,13 @@
     "url": "git+https://github.com/taish/line-bot-sdk-node.git"
   },
   "author": "taish <kbystis+git@gmail.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "The MIT License",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/taish/line-bot-sdk-node/issues"
   },
