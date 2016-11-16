@@ -2,7 +2,7 @@ import test from 'ava'
 import sinon from 'sinon'
 import Request from '../src/request'
 
-test('header', async t => {
+test('create Authorization and User-Agent headers', async t => {
   let token = "client token"
   let url = "https://www.google.com"
   let request = new Request(url, token, {})

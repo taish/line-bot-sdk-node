@@ -1,4 +1,5 @@
 const Request = require('./request')
+const Crypto = require('crypto')
 
 class LineBot {
 
@@ -21,6 +22,15 @@ class LineBot {
     return this._getCredential('channelSecret')
   }
 
+  validateSignature(content, channelSignature) {
+    if (!channelSignature || !this.getChannelSecret()) {
+      return false
+    }
+    const hmac = Crypto.createHmac('sha256', this.getChannelSecret())
+    hmac.update(content)
+    return hmac.digest('base64') === channelSignature
+  }
+
   replyMessage(replyToken, messages) {
     const data = {
       "replyToken": replyToken,
@@ -39,7 +49,7 @@ class LineBot {
     return request.post()
   }
 
-  getProfiole(userId) {
+  getProfile(userId) {
     const path = '/v2/bot/profile/' + userId
     const request = new Request(path, this.getChannelToken())
     return request.get()
