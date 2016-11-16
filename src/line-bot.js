@@ -21,8 +21,13 @@ class LineBot {
     return this._getCredential('channelSecret')
   }
 
-  replyMessage() {
-    'https://api.line.me/v2/bot/message/reply'
+  replyMessage(replyToken, messages) {
+    const data = {
+      "replyToken": replyToken,
+      "messages": Array.isArray(messages) ? messages : [messages]
+    }
+    const request = new Request('/v2/bot/message/reply', this.getChannelToken(), data)
+    return request.post()
   }
 
   pushMessage(userId, messages) {
