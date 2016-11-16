@@ -5,7 +5,7 @@
   "main": "src/line-bot.js",
   "scripts": {
     "test": "ava",
-    "lint": "eslint lib test --fix"
+    "lint": "eslint lib test"
   },
   "repository": {
     "type": "git",
