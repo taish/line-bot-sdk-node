@@ -1,5 +1,6 @@
 # line-bot-sdk-node
 
+[![Build Status](https://travis-ci.org/taish/line-bot-sdk-node.svg?branch=master)](https://travis-ci.org/taish/line-bot-sdk-node)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 ## About the LINE Messaging API
