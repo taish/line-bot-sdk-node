@@ -1,6 +1,6 @@
 {
   "name": "line-bot-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SDK of the LINE Messaging API",
   "main": "src/line-bot.js",
   "scripts": {
