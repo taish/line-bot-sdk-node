@@ -12,6 +12,7 @@ test('pushMessage', async t => {
   sinon.stub(Http, 'request', function (method, url, headers, data) {
     t.is(method, 'POST')
     t.is(url, 'https://api.line.me/v2/bot/message/push')
+    t.deepEqual(data.messages, [message])
     return Promise.resolve(obj)
   })
   let client = new LineBot({

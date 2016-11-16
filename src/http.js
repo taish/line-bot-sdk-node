@@ -1,4 +1,5 @@
-let LineBot = require('./line-bot')
+const LineBot = require('./line-bot')
+const rp = require('request-promise')
 
 class Http {
   /**
@@ -10,12 +11,11 @@ class Http {
    * @return  {Promise}
    */
   static request (method, url, headers, data) {
-    const rp = require('request-promise')
-    const options = {
+    let options = {
       method: method,
       uri: url,
       json: true,
-      headers: Object.assign({ 'User-Agent': 'Line-Bot-Node-SDK/' + LineBot.VERSION }, headers)
+      headers: headers
     }
     if (data) {
       options.body = data

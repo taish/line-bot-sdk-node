@@ -1,7 +1,6 @@
-let Http = require('./http')
+const Request = require('./request')
 
 class LineBot {
-  static get VERSION () { return 'v0.0000001' }
 
   constructor(credentials) {
     this._credentials = credentials
@@ -9,28 +8,48 @@ class LineBot {
       throw new Error("InvalidCredentialsError")
     }
   }
+
   _getCredential(credentialKey) {
     return this._credentials[credentialKey]
   }
+
   getChannelToken() {
     return this._getCredential('channelToken')
   }
+
   getChannelSecret() {
     return this._getCredential('channelSecret')
   }
+
+  replyMessage() {
+    'https://api.line.me/v2/bot/message/reply'
+  }
+
   pushMessage(userId, messages) {
-    let headers = {'Authorization': 'Bearer ' + this.getChannelToken()}
-    let data = {
+    const data = {
       "to": userId,
-      "messages": messages
+      "messages": Array.isArray(messages) ? messages : [messages]
     }
-    return Http.request('POST', 'https://api.line.me/v2/bot/message/push', data, headers)
-    .then((response) => {
-      return Promise.resolve(response)
-    })
-    .catch((response) => {
-      throw new Error(response)
-    })
+    const request = new Request('/v2/bot/message/push', this.getChannelToken(), data)
+    return request.post()
+  }
+
+  getProfiole(userId) {
+    const path = '/v2/bot/profile/' + userId
+    const request = new Request(path, this.getChannelToken())
+    return request.get()
+  }
+
+  getContent(messageId) {
+    const path = '/v2/bot/message/' + messageId + '/content'
+    const request = new Request(path, this.getChannelToken())
+    return request.get()
+  }
+
+  leaveRoom(roomId) {
+    const path = '/v2/bot/room/' + roomId + '/leave'
+    const request = new Request(path, this.getChannelToken())
+    return request.post()
   }
 }
 
