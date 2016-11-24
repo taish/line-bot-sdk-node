@@ -7,5 +7,5 @@ test('create Authorization and User-Agent headers', async t => {
   let url = "https://www.google.com"
   let request = new Request(url, token, {})
   t.is(request.headers['Authorization'], 'Bearer client token')
-  t.is(request.headers['User-Agent'], 'Line-Bot-Node-SDK/v0.0.2')
+  t.is(request.headers['User-Agent'], 'Line-Bot-Node-SDK/v0.0.3')
 })
