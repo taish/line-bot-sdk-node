@@ -12,7 +12,7 @@ https://devdocs.line.me/
 Usage:
 
 ```
-const LineBot = require("line-bot")
+const LineBot = require("line-bot-api")
 
 const client = new LineBot({
   channelToken: '<insert client token>',
@@ -23,14 +23,14 @@ const client = new LineBot({
 app.post('/', bodyParser.json({ verify: (req, res, buf) => req.rawBody = buf }), (req, res) => {
 
   if (!client.validateSignature(req.rawBody, req.headers['x-line-signature'])) {
-    res.sendStatus(400);
+    res.sendStatus(400)
     return
   }
 
   // Retrieve the request's body and parse it as JSON
-  const eventJson = JSON.parse(req.body);
+  const eventJson = JSON.parse(req.rawBody)
   // Do something with eventJson
-  res.sendStatus(200);
+  res.sendStatus(200)
 })
 
 // Send message to user
