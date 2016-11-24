@@ -19,13 +19,25 @@ const client = new LineBot({
   channelSecret: '<insert client secret>'
 })
 
+// Using Express
+app.post('/', bodyParser.json({ verify: (req, res, buf) => req.rawBody = buf }), (req, res) => {
+
+  if (!client.validateSignature(req.rawBody, req.headers['x-line-signature'])) {
+    res.sendStatus(400);
+    return
+  }
+
+  // Retrieve the request's body and parse it as JSON
+  const eventJson = JSON.parse(req.body);
+  // Do something with eventJson
+  res.sendStatus(200);
+})
+
+// Send message to user
 const message = {
   type: 'text',
   text: 'hello'
 }
-
-// Send message to user
-
 client.pushMessage("<to>", message)
   .then((response) => {
     console.log(response)
@@ -35,17 +47,16 @@ client.pushMessage("<to>", message)
     console.log(response.status)
   })
 
-lat messages = [
-      {
-          "type":"text",
-          "text":"Hello, world1"
-      },
-      {
-          "type":"text",
-          "text":"Hello, world2"
-      }
-  ]
-
 // Send messages to user
+const messages = [
+  {
+      "type":"text",
+      "text":"Hello, world1"
+  },
+  {
+      "type":"text",
+      "text":"Hello, world2"
+  }
+]
 client.pushMessage("<to>", messages)
 ```
