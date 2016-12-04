@@ -78,3 +78,8 @@ client.pushMessage("<to>", message)
     console.log(response.status)
   })
 ```
+
+
+## docs
+
+https://taish.github.io/line-bot-sdk-node/LineBot.html
