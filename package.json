@@ -30,6 +30,7 @@
     "eslint-plugin-ava": "^4.0.0",
     "eslint-plugin-promise": "^3.3.2",
     "eslint-plugin-standard": "^2.0.1",
+    "jsdoc": "^3.4.3",
     "sinon": "^1.17.6"
   },
   "dependencies": {
