@@ -51,7 +51,6 @@ app.post('/', bodyParser.json({ verify: (req, res, buf) => req.rawBody = buf }),
       break
     }
   })
-  // Do something with eventJson
   res.sendStatus(200)
 })
 
