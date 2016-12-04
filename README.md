@@ -29,25 +29,37 @@ app.post('/', bodyParser.json({ verify: (req, res, buf) => req.rawBody = buf }),
 
   // Retrieve the request's body and parse it as JSON
   const eventJson = JSON.parse(req.rawBody)
+  eventJson.events.forEach(event => {
+    switch (event.type) {
+    case 'message':
+      switch (event.message.type) {
+      case 'text':
+        const message = {
+          type: 'text',
+          text: event.message.text
+        }
+        client.replyMessage(event.replyToken, message)
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((response) => {
+            console.log(response.body)
+            console.log(response.status)
+          })
+        break
+      }
+      break
+    }
+  })
   // Do something with eventJson
   res.sendStatus(200)
 })
 
-// Send message to user
+// Send message or messages to user
 const message = {
   type: 'text',
   text: 'hello'
 }
-client.pushMessage("<to>", message)
-  .then((response) => {
-    console.log(response)
-  })
-  .catch((response) => {
-    console.log(response.body)
-    console.log(response.status)
-  })
-
-// Send messages to user
 const messages = [
   {
       "type":"text",
@@ -58,5 +70,12 @@ const messages = [
       "text":"Hello, world2"
   }
 ]
-client.pushMessage("<to>", messages)
+client.pushMessage("<to>", message)
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((response) => {
+    console.log(response.body)
+    console.log(response.status)
+  })
 ```
