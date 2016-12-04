@@ -11,7 +11,7 @@ https://devdocs.line.me/
 
 Usage:
 
-```
+```js
 const LineBot = require("line-bot-api")
 
 const client = new LineBot({
