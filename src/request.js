@@ -4,7 +4,11 @@ const Api = require('./api')
 class Request {
 
   constructor(path, headerToken, data) {
-    this.url = Api.HOST + path
+    if(path.indexOf("/content") > 0) {
+      this.url = Api.HOSTDATA + path
+    } else {
+      this.url = Api.HOST + path
+    }
     this.headers = {
       'Authorization': 'Bearer ' + headerToken,
       'User-Agent': 'Line-Bot-Node-SDK/' + Api.VERSION
