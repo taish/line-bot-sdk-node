@@ -5,7 +5,7 @@ let client = new LineBot({
   channelSecret: '<insert client secret>'
 })
 
-lat message = {
+let message = {
   type: 'text',
   text: 'hello'
 }
@@ -21,7 +21,7 @@ client.pushMessage("<to>", message)
     console.log(response.status)
   })
 
-lat messages = [
+let messages = [
       {
           "type":"text",
           "text":"Hello, world1"
